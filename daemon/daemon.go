@@ -142,6 +142,7 @@ func (d *Daemon) ListServicesWithOptions(ctx context.Context, opts v11.ListServi
 			ReadOnly:   readOnly,
 			Status:     service.Status,
 			Rollout:    service.Rollout,
+			SyncError:  service.SyncError,
 			Antecedent: service.Antecedent,
 			Labels:     service.Labels,
 			Automated:  policies.Has(policy.Automated),

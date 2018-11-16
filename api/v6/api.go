@@ -36,6 +36,7 @@ type ControllerStatus struct {
 	ReadOnly   ReadOnlyReason
 	Status     string
 	Rollout    cluster.RolloutStatus
+	SyncError  error
 	Antecedent flux.ResourceID
 	Labels     map[string]string
 	Automated  bool
