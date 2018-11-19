@@ -45,9 +45,9 @@ spec:
       # default namespace. You will also need to provide the configmap
       # with an entry for `config`, and uncomment the volumeMount and
       # env entries below.
-      # - name: kubeconfig
-      #   configMap:
-      #     name: flux-kubeconfig
+      - name: kubeconfig
+        configMap:
+          name: flux-kubeconfig
 
       containers:
       - name: flux
@@ -73,15 +73,15 @@ spec:
         # Include this and the volume "kubeconfig" above, and the
         # environment entry "KUBECONFIG" below, to override the config
         # used by kuebctl.
-        # - name: kubeconfig
-        #   mountPath: /etc/fluxd/kube
+        - name: kubeconfig
+          mountPath: /etc/fluxd/kube
 
         # Include this to point kubectl at a different config; you
         # will need to do this if you have mounted an alternate config
         # from a configmap, as in commented blocks above.
-        # env:
-        # - name: KUBECONFIG
-        #   value: /etc/fluxd/kube/config
+        env:
+        - name: KUBECONFIG
+          value: /etc/fluxd/kube/config
 
         args:
 
@@ -108,3 +108,5 @@ spec:
         # make sure to set prometheus' annotation to scrape the port value.
         - --listen-metrics=:3031
         - --k8s-namespace-whitelist=ladev
+        - --git-sync-tag=flux-sync-ladev
+        - --git-label=flux-sync-ladev
