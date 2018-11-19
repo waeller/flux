@@ -10,7 +10,7 @@ metadata:
   namespace: ladev
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRole
+kind: Role
 metadata:
   labels:
     name: flux
@@ -20,8 +20,6 @@ rules:
   - apiGroups: ['*']
     resources: ['*']
     verbs: ['*']
-  - nonResourceURLs: ['*']
-    verbs: ['*']
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
@@ -29,6 +27,7 @@ metadata:
   labels:
     name: flux
   name: flux
+  namespace: ladev
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
